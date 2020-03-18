@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const fs = require('fs');
 
 let noteData = require('./db/db.json');
 
@@ -20,6 +21,22 @@ app.get("/notes", (req, res) => {
 
 app.get('/api/notes', (req, res) => {
     res.json(noteData);
+})
+
+app.post('/api/notes', (req, res) => {
+    noteData.push(req.body);
+    noteData.forEach((note, i) => {
+        note.id = i + 1;
+    })
+    let newNote = JSON.stringify(noteData);
+    fs.writeFileSync('./db/db.json', newNote);
+
+    res.json(noteData);
+})
+
+app.delete('/api/notes/:id', (req, res) => {
+    let id = req.params.id;
+    console.log(id);
 })
 
 app.listen(PORT, () => {

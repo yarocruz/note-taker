@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const fs = require('fs');
 
-let noteData = require('./db/db.json');
+let noteData = require('./develop/db/db.json');
 
 let PORT = process.env.PORT || 8080;
 
@@ -12,11 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
+    res.sendFile(path.join(__dirname, './develop/public/index.html'));
 })
 
 app.get("/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
+    res.sendFile(path.join(__dirname, './develop/public/notes.html'));
 })
 
 app.get('/api/notes', (req, res) => {
@@ -29,7 +29,7 @@ app.post('/api/notes', (req, res) => {
         note.id = i;
     })
     let newNote = JSON.stringify(noteData);
-    fs.writeFileSync('./db/db.json', newNote);
+    fs.writeFileSync('./develop/db/db.json', newNote);
 
     res.json(noteData);
 })
@@ -37,7 +37,7 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
 
     let filtered = noteData.filter(note => note.id !== parseInt(req.params.id));
-    fs.writeFileSync('./db/db.json', JSON.stringify(filtered));
+    fs.writeFileSync('./develop/db/db.json', JSON.stringify(filtered));
 
     //alter the note data with the filtered results so when it sends the response back it is immediately showned on the front end
     noteData = filtered;

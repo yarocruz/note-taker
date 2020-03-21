@@ -35,8 +35,13 @@ app.post('/api/notes', (req, res) => {
 })
 
 app.delete('/api/notes/:id', (req, res) => {
-    let id = req.params.id;
-    console.log(id);
+
+    let filtered = noteData.filter(note => note.id !== parseInt(req.params.id));
+    let newNotes = JSON.stringify(filtered);
+    fs.writeFileSync('./db/db.json', newNotes);
+
+    res.json(noteData);
+
 })
 
 app.listen(PORT, () => {

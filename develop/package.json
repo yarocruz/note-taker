@@ -1,14 +1,14 @@
 {
-  "name": "note-taker",
-  "version": "1.0.0",
-  "description": "Web app for writing, saving, and deleting notes.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "yarocruz",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+	"name": "note-taker",
+	"version": "1.0.0",
+	"description": "Web app for writing, saving, and deleting notes.",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"author": "yarocruz",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
 }

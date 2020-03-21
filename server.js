@@ -7,7 +7,7 @@ let noteData = require('./develop/db/db.json');
 
 let PORT = process.env.PORT || 8080;
 
-app.use(express.static("public"));
+app.use(express.static("develop/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

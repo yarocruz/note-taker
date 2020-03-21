@@ -3,9 +3,6 @@
 	"version": "1.0.0",
 	"description": "Web app for writing, saving, and deleting notes.",
 	"main": "server.js",
-	"engines": {
-		"node": "13.9.x"
-	},
 	"scripts": {
 		"start": "node server.js"
 	},

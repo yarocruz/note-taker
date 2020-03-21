@@ -26,7 +26,7 @@ app.get('/api/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
     noteData.push(req.body);
     noteData.forEach((note, i) => {
-        note.id = i;
+        note.id = i + 1;
     })
     let newNote = JSON.stringify(noteData);
     fs.writeFileSync('./develop/db/db.json', newNote);

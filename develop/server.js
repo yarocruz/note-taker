@@ -26,7 +26,7 @@ app.get('/api/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
     noteData.push(req.body);
     noteData.forEach((note, i) => {
-        note.id = i + 1;
+        note.id = i;
     })
     let newNote = JSON.stringify(noteData);
     fs.writeFileSync('./db/db.json', newNote);
@@ -37,8 +37,10 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
 
     let filtered = noteData.filter(note => note.id !== parseInt(req.params.id));
-    let newNotes = JSON.stringify(filtered);
-    fs.writeFileSync('./db/db.json', newNotes);
+    fs.writeFileSync('./db/db.json', JSON.stringify(filtered));
+
+    //alter the note data with the filtered results so when it sends the response back it is immediately showned on the front end
+    noteData = filtered;
 
     res.json(noteData);
 
